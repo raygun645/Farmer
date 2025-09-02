@@ -3,7 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GridSoil.h"
+//#include "GridSoil.h"
+#include "PaperSpriteActor.h"
 #include "UObject/Interface.h"
 
 #include "InteractionInterface.generated.h"
@@ -24,15 +25,14 @@ class FARMGAME_API IInteractionInterface
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Interaction")
-	void Hoe();
+	
+	virtual void Hoe() = 0;
 
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Interaction")
-	bool Plant(const TArray<UPaperSpriteComponent*>& PlantedSprites, int32 ValueOfCrop);
 
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Interaction")
-	void Water();
+	virtual bool Plant(const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop) = 0;
 
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Interaction")
-	void TimeSkip();
+
+	virtual void Water() = 0;
+
+	
 };
