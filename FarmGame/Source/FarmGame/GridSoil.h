@@ -33,5 +33,6 @@ public:
 	virtual void Water() override;
 	UFUNCTION(Category = "Interaction")
 	virtual bool Plant(const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop) override;
-	
+	UFUNCTION(Category = "Interaction")
+	virtual void Timeskip() override;
 };

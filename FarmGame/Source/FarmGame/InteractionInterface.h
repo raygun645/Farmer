@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-//#include "GridSoil.h"
 #include "PaperSpriteActor.h"
 #include "UObject/Interface.h"
 
@@ -28,11 +27,11 @@ public:
 	
 	virtual void Hoe() = 0;
 
-
 	virtual bool Plant(const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop) = 0;
 
-
 	virtual void Water() = 0;
+	
+	virtual void Timeskip() = 0;
 
 	
 };

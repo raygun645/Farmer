@@ -14,16 +14,21 @@ AGridSoil::AGridSoil()
 
 void AGridSoil::Hoe()
 {
-	
+	UE_LOG(LogTemp, Display, TEXT("Hoe"));
 }
 
 void AGridSoil::Water()
 {
-	
+	UE_LOG(LogTemp, Display, TEXT("Water"));
 }
 
 bool AGridSoil::Plant(const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop)
 {
-	
+	UE_LOG(LogTemp, Display, TEXT("Plant"));
 	return false;
+}
+
+void AGridSoil::Timeskip()
+{
+	UE_LOG(LogTemp, Display, TEXT("Timeskip"));
 }
