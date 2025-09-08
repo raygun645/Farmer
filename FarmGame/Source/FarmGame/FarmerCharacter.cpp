@@ -126,7 +126,7 @@ void AFarmerCharacter::Plant()
 	{
 		if (OverlappingActor)
 		{
-			UE_LOG(LogTemp, Display, TEXT("Planted seed"));
+			UE_LOG(LogTemp, Display, TEXT("PlantedSeed"));
 		}
 	}
 }
