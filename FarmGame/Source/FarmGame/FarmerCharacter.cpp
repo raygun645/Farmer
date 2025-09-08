@@ -55,8 +55,10 @@ void AFarmerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 		// Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AFarmerCharacter::Move);
 
-		//inventory
-		//EnhancedInputComponent->BindAction(CropDrawerAction, ETriggerEvent::Triggered, this, &AFarmerCharacter::AccessCropDrawer);
+		//player actions
+		EnhancedInputComponent->BindAction(HoeAction, ETriggerEvent::Triggered, this, &AFarmerCharacter::Hoe);
+		EnhancedInputComponent->BindAction(WaterAction, ETriggerEvent::Triggered, this, &AFarmerCharacter::Water);
+		EnhancedInputComponent->BindAction(PlantAction, ETriggerEvent::Triggered, this, &AFarmerCharacter::Plant);
 
 		//pause
 		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Triggered, this, &AFarmerCharacter::PauseGame);
@@ -87,6 +89,48 @@ void AFarmerCharacter::PauseGame()
 	}
 }
 
+void AFarmerCharacter::Hoe()
+{
+	TArray<AActor*> OverlappingActors;
+	GetOverlappingActors(OverlappingActors, SoilClassFilter);
+
+	for (AActor* OverlappingActor : OverlappingActors)
+	{
+		if (OverlappingActor)
+		{
+			UE_LOG(LogTemp, Display, TEXT("Hoed"));
+		}
+	}
+}
+
+void AFarmerCharacter::Water()
+{
+	TArray<AActor*> OverlappingActors;
+	GetOverlappingActors(OverlappingActors, SoilClassFilter);
+
+	for (AActor* OverlappingActor : OverlappingActors)
+	{
+		if (OverlappingActor)
+		{
+			UE_LOG(LogTemp, Display, TEXT("Watered"));
+		}
+	}
+}
+
+void AFarmerCharacter::Plant()
+{
+	TArray<AActor*> OverlappingActors;
+	GetOverlappingActors(OverlappingActors, SoilClassFilter);
+
+	for (AActor* OverlappingActor : OverlappingActors)
+	{
+		if (OverlappingActor)
+		{
+			UE_LOG(LogTemp, Display, TEXT("Planted seed"));
+		}
+	}
+}
+
 void AFarmerCharacter::Move(const FInputActionValue& Value)
 {
 	//taken from UE base characters
@@ -103,18 +147,17 @@ void AFarmerCharacter::Move(const FInputActionValue& Value)
 		//directional rotators
 		FRotator RotA = UKismetMathLibrary::MakeRotator(0,0,180.0);
 		FRotator RotB = UKismetMathLibrary::MakeRotator(0,0,0);
-		
 		FRotator Direction = UKismetMathLibrary::SelectRotator(RotA,RotB, MovementVector.X > 0.0);
 		
 		// get forward vector
-		const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		FVector ForwardDirection(1,0,0);
 	
 		// get right vector 
-		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		FVector RightDirection(0,1,0);
 
 		// add movement 
-		AddMovementInput(ForwardDirection, MovementVector.Y);
-		AddMovementInput(RightDirection, MovementVector.X);
+		AddMovementInput(ForwardDirection, MovementVector.X);
+		AddMovementInput(RightDirection, MovementVector.Y);
 
 		if (MovementVector.X != 0.0)
 		{

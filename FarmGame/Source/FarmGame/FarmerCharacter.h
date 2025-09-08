@@ -19,6 +19,7 @@ class FARMGAME_API AFarmerCharacter : public APaperCharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputMappingContext* PlayerMappingContext;
 
+	//input actions
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* MoveAction;
 
@@ -51,6 +52,20 @@ protected:
 	TSubclassOf<UUserWidget> PauseWidgetClass;
 	UPROPERTY()
 	UUserWidget* PauseWidget;
-	
+
+	//Player actions and input
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* HoeAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* WaterAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* PlantAction;
+
+	void Hoe();
+	void Water();
+	void Plant();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Overlap)
+	TSubclassOf<AActor> SoilClassFilter;
 	
 };
