@@ -8,13 +8,17 @@ AGridSoil::AGridSoil()
 {
 	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
 	CropSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("CropSprite"));
-	CropSprite->SetupAttachment(RootComponent);
+	GroundSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("GroundSprite"));
+	GroundSprite->SetupAttachment(RootComponent);
+	CropSprite->SetupAttachment(GroundSprite);
 	BoxCollider->SetupAttachment(CropSprite);
 }
 
 void AGridSoil::Hoe()
 {
 	UE_LOG(LogTemp, Display, TEXT("Hoe (Soil Side)"));
+
+	
 }
 
 void AGridSoil::Water()

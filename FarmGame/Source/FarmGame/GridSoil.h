@@ -21,6 +21,8 @@ class FARMGAME_API AGridSoil : public APaperSpriteActor, public IInteractionInte
 	UBoxComponent* BoxCollider;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, meta = (allowPrivateAccess = true))
 	UPaperSpriteComponent* CropSprite;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, meta = (allowPrivateAccess = true))
+	UPaperSpriteComponent* GroundSprite;
 	
 public:
 
