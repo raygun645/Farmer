@@ -39,17 +39,28 @@ public:
 	UFUNCTION(Category = "Interaction")
 	virtual void Timeskip() override;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	TArray<UPaperSprite*> PlantedCropSpriteStages;
+	int32 PlantedCropValue;
+
 protected:
 
 	//In-Game soil states
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	TArray<UPaperSprite*> SoilSpriteStages;
-	int32 SoilIndex;
+	int32 SoilIndex; // 0 = grass/1 = tilled/2 = watered 
 	
-	UFUNCTION(Category = "Interaction")
+	UFUNCTION(Category = "Crop/Soil")
 	void UpdateSoilSprite();
+
+	//Updating the crop and index
+	UFUNCTION(Category = "Crop/Soil")
+	void UpdateCropSprite();
+	int32 CropIndex;
 
 	//Ground States
 	bool IsGroundHoed = false;
 	bool IsGroundWatered = false;
+	bool IsCropPlanted = false;
+	bool IsPlantReady = false;
 };

@@ -22,7 +22,11 @@ void AGridSoil::Hoe()
 	{
 		SoilIndex = 1;
 		UpdateSoilSprite();
+		CropSprite->SetSprite(nullptr); // clear the seed if hoed
+		
 		IsGroundHoed = true;
+		IsGroundWatered = false;
+		IsCropPlanted = false;
 	}
 	else
 	{
@@ -53,15 +57,18 @@ void AGridSoil::Water()
 bool AGridSoil::Plant(/*const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop*/)
 {
 	UE_LOG(LogTemp, Display, TEXT("Plant (Soil Side)"));
-	if (IsGroundHoed == true && IsGroundWatered == true)
+	if (IsGroundHoed == true && IsCropPlanted == false)
 	{
 		UE_LOG(LogTemp, Display, TEXT("Seed Planted"));
+		CropIndex = 0;
+		IsCropPlanted = true;
+		UpdateCropSprite();
+		return true;
 	}
-	else
-	{
-		UE_LOG(LogTemp, Display, TEXT("Seed no planted"));
-	}
+	
+	UE_LOG(LogTemp, Display, TEXT("Seed no planted"));
 	return false;
+	
 }
 
 void AGridSoil::Timeskip()
@@ -75,5 +82,26 @@ void AGridSoil::UpdateSoilSprite()
 	if (SoilUpdate)
 	{
 		GroundSprite->SetSprite(SoilUpdate);
+	}
+}
+
+void AGridSoil::UpdateCropSprite()
+{
+	//gets last valid index of array. then clamps the index
+	const int32 LastIndex = PlantedCropSpriteStages.Num() > 0 ? PlantedCropSpriteStages.Num() - 1 : 0;
+	const int32 ClampedIndex = FMath::Clamp(CropIndex, 0, LastIndex);
+	
+	if (PlantedCropSpriteStages.IsValidIndex(ClampedIndex))
+	{
+		UPaperSprite* CropUpdate = PlantedCropSpriteStages[ClampedIndex];
+		if (CropUpdate)
+		{
+			CropSprite->SetSprite(CropUpdate);
+		}
+	}
+
+	if (ClampedIndex == LastIndex)
+	{
+		IsPlantReady = true;
 	}
 }
