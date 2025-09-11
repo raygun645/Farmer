@@ -96,9 +96,12 @@ void AFarmerCharacter::Hoe()
 
 	for (AActor* OverlappingActor : OverlappingActors)
 	{
-		if (OverlappingActor)
+		IInteractionInterface* InteractionInterface = Cast<IInteractionInterface>(OverlappingActor);
+		
+		if (OverlappingActor && InteractionInterface)
 		{
-			UE_LOG(LogTemp, Display, TEXT("Hoed"));
+			UE_LOG(LogTemp, Display, TEXT("Hoed (Player Side)"));
+			InteractionInterface->Hoe();
 		}
 	}
 }
@@ -110,9 +113,12 @@ void AFarmerCharacter::Water()
 
 	for (AActor* OverlappingActor : OverlappingActors)
 	{
+		IInteractionInterface* InteractionInterface = Cast<IInteractionInterface>(OverlappingActor);
+		
 		if (OverlappingActor)
 		{
-			UE_LOG(LogTemp, Display, TEXT("Watered"));
+			UE_LOG(LogTemp, Display, TEXT("Watered (Player Side)"));
+			InteractionInterface->Water();
 		}
 	}
 }
@@ -124,9 +130,12 @@ void AFarmerCharacter::Plant()
 
 	for (AActor* OverlappingActor : OverlappingActors)
 	{
+		IInteractionInterface* InteractionInterface = Cast<IInteractionInterface>(OverlappingActor);
+		
 		if (OverlappingActor)
 		{
-			UE_LOG(LogTemp, Display, TEXT("PlantedSeed"));
+			UE_LOG(LogTemp, Display, TEXT("PlantedSeed (Player Side)"));
+			InteractionInterface->Plant();
 		}
 	}
 }

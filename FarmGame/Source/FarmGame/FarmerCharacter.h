@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GridSoil.h"
 #include "PaperCharacter.h"
 #include "FarmerCharacter.generated.h"
 
@@ -66,6 +67,6 @@ protected:
 	void Plant();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Overlap)
-	TSubclassOf<AActor> SoilClassFilter;
+	TSubclassOf<AGridSoil> SoilClassFilter;
 	
 };

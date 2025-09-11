@@ -27,7 +27,7 @@ public:
 	
 	virtual void Hoe() = 0;
 
-	virtual bool Plant(const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop) = 0;
+	virtual bool Plant(/*const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop*/) = 0;
 
 	virtual void Water() = 0;
 	
