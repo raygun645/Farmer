@@ -96,12 +96,21 @@ void AFarmerCharacter::Hoe()
 
 	for (AActor* OverlappingActor : OverlappingActors)
 	{
+		AGridSoil* GridSoil = Cast<AGridSoil>(OverlappingActor);
 		IInteractionInterface* InteractionInterface = Cast<IInteractionInterface>(OverlappingActor);
 		
 		if (OverlappingActor && InteractionInterface)
 		{
 			UE_LOG(LogTemp, Display, TEXT("Hoed (Player Side)"));
 			InteractionInterface->Hoe();
+			
+			if (GridSoil->IsPlantReady == true)
+			{
+				UE_LOG(LogTemp, Display, TEXT("Money for plant"));
+				int32 NewMoney = Money += 20;
+				OnMoneyChanged.Broadcast(NewMoney);
+			}
+			
 		}
 	}
 }

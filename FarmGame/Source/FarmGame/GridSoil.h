@@ -46,6 +46,12 @@ public:
 	TArray<UPaperSprite*> PlantedCropSpriteStages;
 	int32 PlantedCropValue;
 
+	//Ground States
+	bool IsGroundHoed = false;
+	bool IsGroundWatered = false;
+	bool IsCropPlanted = false;
+	bool IsPlantReady = false;
+
 protected:
 
 	//In-Game soil states
@@ -60,10 +66,4 @@ protected:
 	UFUNCTION(Category = "Crop/Soil")
 	void UpdateCropSprite();
 	int32 CropIndex;
-
-	//Ground States
-	bool IsGroundHoed = false;
-	bool IsGroundWatered = false;
-	bool IsCropPlanted = false;
-	bool IsPlantReady = false;
 };

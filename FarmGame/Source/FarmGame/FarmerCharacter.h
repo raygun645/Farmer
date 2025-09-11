@@ -12,6 +12,8 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMoneyChanged, int32, UpdatedMoney);
+
 UCLASS()
 class FARMGAME_API AFarmerCharacter : public APaperCharacter
 {
@@ -66,7 +68,14 @@ protected:
 	void Water();
 	void Plant();
 
+	//soil filter for overlaps
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Overlap)
 	TSubclassOf<AGridSoil> SoilClassFilter;
+
+	//Money
+	int32 Money = 0;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnMoneyChanged OnMoneyChanged;
 	
 };
