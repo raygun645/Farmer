@@ -17,6 +17,7 @@ class FARMGAME_API AGridSoil : public APaperSpriteActor, public IInteractionInte
 {
 	GENERATED_BODY()
 
+	//In-Game actor components
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, meta = (allowPrivateAccess = true))
 	UBoxComponent* BoxCollider;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, meta = (allowPrivateAccess = true))
@@ -37,4 +38,18 @@ public:
 	virtual bool Plant(/*const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop*/) override;
 	UFUNCTION(Category = "Interaction")
 	virtual void Timeskip() override;
+
+protected:
+
+	//In-Game soil states
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	TArray<UPaperSprite*> SoilSpriteStages;
+	int32 SoilIndex;
+	
+	UFUNCTION(Category = "Interaction")
+	void UpdateSoilSprite();
+
+	//Ground States
+	bool IsGroundHoed = false;
+	bool IsGroundWatered = false;
 };
