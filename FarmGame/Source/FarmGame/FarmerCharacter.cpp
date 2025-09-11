@@ -107,8 +107,8 @@ void AFarmerCharacter::Hoe()
 			if (GridSoil->IsPlantReady == true)
 			{
 				UE_LOG(LogTemp, Display, TEXT("Money for plant"));
-				int32 NewMoney = Money += 20;
-				OnMoneyChanged.Broadcast(NewMoney);
+				int32 Profit = Money += 20;
+				OnMoneyChanged.Broadcast(Profit);
 			}
 			
 		}
