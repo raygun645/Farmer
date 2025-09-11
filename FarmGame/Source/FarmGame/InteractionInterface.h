@@ -9,7 +9,7 @@
 #include "InteractionInterface.generated.h"
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI)
+UINTERFACE(MinimalAPI, NotBlueprintable)
 class UInteractionInterface : public UInterface
 {
 	GENERATED_BODY()
@@ -30,7 +30,8 @@ public:
 	virtual bool Plant(/*const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop*/) = 0;
 
 	virtual void Water() = 0;
-	
+
+	UFUNCTION(BlueprintCallable)
 	virtual void Timeskip() = 0;
 
 	

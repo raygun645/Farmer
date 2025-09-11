@@ -12,6 +12,9 @@
 /**
  * 
  */
+
+
+
 UCLASS()
 class FARMGAME_API AGridSoil : public APaperSpriteActor, public IInteractionInterface
 {
@@ -36,7 +39,7 @@ public:
 	virtual void Water() override;
 	UFUNCTION(Category = "Interaction")
 	virtual bool Plant(/*const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop*/) override;
-	UFUNCTION(Category = "Interaction")
+	UFUNCTION(BlueprintCallable,Category = "Interaction")
 	virtual void Timeskip() override;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)

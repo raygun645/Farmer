@@ -74,6 +74,25 @@ bool AGridSoil::Plant(/*const TArray<UPaperSpriteComponent*> PlantedSprites, int
 void AGridSoil::Timeskip()
 {
 	UE_LOG(LogTemp, Display, TEXT("Timeskip"));
+	
+	if (IsCropPlanted == true)
+	{
+		if (IsGroundWatered == true)
+		{
+			CropIndex++;
+			SoilIndex = 1;
+			IsGroundWatered = false;
+			UpdateCropSprite();
+		}
+	}
+	else
+	{
+		SoilIndex = 0;
+		IsGroundHoed = false;
+	}
+
+	UpdateSoilSprite();
+	IsGroundWatered = false;
 }
 
 void AGridSoil::UpdateSoilSprite()
