@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PaperSpriteActor.h"
+#include "PaperSprite.h"
 #include "UObject/Interface.h"
 
 #include "InteractionInterface.generated.h"
@@ -27,7 +27,7 @@ public:
 	
 	virtual void Hoe() = 0;
 
-	virtual bool Plant(/*const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop*/) = 0;
+	virtual bool Plant(const TArray<UPaperSprite*> PlantedSprites, int32 ValueOfCrop) = 0;
 
 	virtual void Water() = 0;
 

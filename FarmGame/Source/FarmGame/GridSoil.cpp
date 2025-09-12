@@ -54,12 +54,14 @@ void AGridSoil::Water()
 	
 }
 
-bool AGridSoil::Plant(/*const TArray<UPaperSpriteComponent*> PlantedSprites, int32 ValueOfCrop*/)
+bool AGridSoil::Plant(const TArray<UPaperSprite*> PlantedSprites, int32 ValueOfCrop)
 {
 	UE_LOG(LogTemp, Display, TEXT("Plant (Soil Side)"));
 	if (IsGroundHoed == true && IsCropPlanted == false)
 	{
 		UE_LOG(LogTemp, Display, TEXT("Seed Planted"));
+		PlantedCropSpriteStages = PlantedSprites;
+		PlantedCropValue = ValueOfCrop;
 		CropIndex = 0;
 		IsCropPlanted = true;
 		UpdateCropSprite();
