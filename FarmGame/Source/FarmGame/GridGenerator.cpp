@@ -8,9 +8,16 @@ void AGridGenerator::BeginPlay()
 {
 	Super::BeginPlay();
 
-	for (int32 RowIndex = GridRows * -1; RowIndex < GridRows; RowIndex++)
+	GenerateGridWithBorder();
+	
+}
+
+void AGridGenerator::GenerateGridWithBorder()
+{
+	//Grid Generation
+	for (int32 RowIndex = GridRows * -1; RowIndex <= GridRows; RowIndex++)
 	{
-		for (int32 ColumnIndex = GridCols * -1; ColumnIndex < GridCols; ColumnIndex++)
+		for (int32 ColumnIndex = GridCols * -1; ColumnIndex <= GridCols; ColumnIndex++)
 		{
 			float LocationX = ColumnIndex * TileSize;
 			float LocationY = RowIndex * TileSize;
@@ -23,11 +30,18 @@ void AGridGenerator::BeginPlay()
 			SpawnParameters.Instigator = GetInstigator();
 			SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-			GetWorld()->SpawnActor<AActor>(SoilActorClass, Location, Rotation, SpawnParameters);
+			if (GridRows == RowIndex || GridRows * -1 == RowIndex  || GridCols == ColumnIndex || GridCols * -1 == ColumnIndex)
+			{
+				GetWorld()->SpawnActor<AActor>(BorderActorClass, Location, Rotation, SpawnParameters);
+			}
+			else
+			{
+				GetWorld()->SpawnActor<AActor>(SoilActorClass, Location, Rotation, SpawnParameters);
+			}
 		}
 	}
-	
 }
+
 
 
 

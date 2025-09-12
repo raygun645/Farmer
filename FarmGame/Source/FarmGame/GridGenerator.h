@@ -20,6 +20,8 @@ protected:
 public:	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
 	TSubclassOf<AActor> SoilActorClass;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Grid Settings")
+	TSubclassOf<AActor> BorderActorClass;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Grid Settings")
 	int32 GridRows;
@@ -28,5 +30,7 @@ public:
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Grid Settings")
 	int32 TileSize = 40; //direct tile size from sprite
-
+private:
+	void GenerateGridWithBorder();
+	
 };
