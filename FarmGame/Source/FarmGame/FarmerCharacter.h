@@ -131,6 +131,8 @@ protected:
 	UPaperSprite* CurrentCropImage;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = SharedSeedSettings)
 	int32 CropValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = SharedSeedSettings)
+	int32 CropCost;
 
 	UPROPERTY(BlueprintAssignable)
 	FOnSpriteImageChanged OnSpriteImageChanged;
@@ -143,14 +145,17 @@ protected:
 	UPaperSprite* TurnipCropImage;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip")
 	int32 TurnipValue;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip")
+	int32 TurnipSeedCost;
 
 	//Rose
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose")
 	TArray<UPaperSprite*> RoseCropSprites;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose")
 	UPaperSprite* RoseCropImage;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose")
 	int32 RoseValue;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose")
+	int32 RoseSeedCost;
 
 	//Strawberry
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry")
@@ -159,6 +164,8 @@ protected:
 	UPaperSprite* StrawberryCropImage;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry")
 	int32 StrawberryValue;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry")
+	int32 StrawberrySeedCost;
 
 	//Grape
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape")
@@ -167,6 +174,8 @@ protected:
 	UPaperSprite* GrapeCropImage;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape")
 	int32 GrapeValue;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape")
+	int32 GrapeSeedCost;
 
 	//Pineapple
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple")
@@ -175,6 +184,8 @@ protected:
 	UPaperSprite* PineappleCropImage;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple")
 	int32 PineappleValue;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple")
+	int32 PineappleSeedCost;
 	
 	
 };

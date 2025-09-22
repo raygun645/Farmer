@@ -5,11 +5,22 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
-#include "AssetTypeActions/AssetDefinition_SoundBase.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 
+/* TODO: (In any order)
+ * Crop cost and balanced values
+ * Possibly other ways of farming? different tools?
+ * Different way to timeskip outside of a button in the UI
+ * Upgrades to crops/Progression for unlocking new crops
+ * Autonomous Farming?
+ * Save functions for saving unlocks and progress
+ * New sound effects and UI tweaks
+ * Find a way to have more seeds? maybe a catalogue you can select seeds to have in your toolbar.
+ * Maybe a way to buy more space?
+ * A Town transition rather than doing everything on the farm.
+*/
 
 AFarmerCharacter::AFarmerCharacter()
 {
@@ -37,6 +48,7 @@ void AFarmerCharacter::BeginPlay()
 	CurrentCropSprites = TurnipCropSprites;
 	CropValue = TurnipValue;
 	CurrentCropImage = TurnipCropImage;
+	CropCost = TurnipSeedCost;
 }
 
 void AFarmerCharacter::NotifyControllerChanged()
@@ -199,7 +211,7 @@ void AFarmerCharacter::Plant()
 				{
 					UGameplayStatics::PlaySound2D(GetWorld(),PlantSound);
 					
-					Money -= 20;
+					Money -= CropCost;
 					OnMoneyChanged.Broadcast(Money);
 				}
 			}
@@ -207,12 +219,13 @@ void AFarmerCharacter::Plant()
 	}
 }
 
-//here seeds will be assigned to a button press
+//here seeds will be assigned to a button press as well as their values
 void AFarmerCharacter::SwapToTurnipSeed()
 {
 	CurrentCropSprites = TurnipCropSprites;
 	CropValue = TurnipValue;
 	CurrentCropImage = TurnipCropImage;
+	CropCost = TurnipSeedCost;
 
 	OnSpriteImageChanged.Broadcast(CurrentCropImage);
 }
@@ -222,6 +235,7 @@ void AFarmerCharacter::SwapToRoseSeed()
 	CurrentCropSprites = RoseCropSprites;
 	CropValue = RoseValue;
 	CurrentCropImage = RoseCropImage;
+	CropCost = RoseSeedCost;
 	
 	OnSpriteImageChanged.Broadcast(CurrentCropImage);
 }
@@ -231,6 +245,7 @@ void AFarmerCharacter::SwapToStrawberrySeed()
 	CurrentCropSprites = StrawberryCropSprites;
 	CropValue = StrawberryValue;
 	CurrentCropImage = StrawberryCropImage;
+	CropCost = StrawberrySeedCost;
 
 	OnSpriteImageChanged.Broadcast(CurrentCropImage);
 }
@@ -240,6 +255,7 @@ void AFarmerCharacter::SwapToGrapeSeed()
 	CurrentCropSprites = GrapeCropSprites;
 	CropValue = GrapeValue;
 	CurrentCropImage = GrapeCropImage;
+	CropCost = GrapeSeedCost;
 
 	OnSpriteImageChanged.Broadcast(CurrentCropImage);
 }
@@ -249,6 +265,7 @@ void AFarmerCharacter::SwapToPineappleSeed()
 	CurrentCropSprites = PineappleCropSprites;
 	CropValue = PineappleValue;
 	CurrentCropImage = PineappleCropImage;
+	CropCost = PineappleSeedCost;
 
 	OnSpriteImageChanged.Broadcast(CurrentCropImage);
 }
