@@ -153,6 +153,7 @@ protected:
 	TArray<UPaperSprite*> RoseCropSprites;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose")
 	UPaperSprite* RoseCropImage;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose")
 	int32 RoseValue;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose")
 	int32 RoseSeedCost;
