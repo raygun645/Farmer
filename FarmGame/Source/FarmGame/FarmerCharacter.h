@@ -13,7 +13,7 @@ class UInputAction;
 struct FInputActionValue;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMoneyChanged, int32, UpdatedMoney);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSpriteImageChanged, UPaperSprite*, UpdatedCropSprite);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnCropChanged, UPaperSprite*, UpdatedCropSprite, int32, CropCost, int32, CropValue);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnToolTipTextOpen, bool, IsVisible);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCropDrawerOpen, bool, IsOpen);
 
@@ -135,7 +135,7 @@ protected:
 	int32 CropCost;
 
 	UPROPERTY(BlueprintAssignable)
-	FOnSpriteImageChanged OnSpriteImageChanged;
+	FOnCropChanged OnCropChanged;
 
 	//Specific seeds
 	//Turnip

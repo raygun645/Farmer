@@ -10,7 +10,7 @@
 #include "Kismet/KismetMathLibrary.h"
 
 /* TODO: (In any order)
- * Crop cost and balanced values
+ * Crop cost and balanced values (DONE)
  * Possibly other ways of farming? different tools?
  * Different way to timeskip outside of a button in the UI
  * Upgrades to crops/Progression for unlocking new crops
@@ -44,11 +44,13 @@ void AFarmerCharacter::BeginPlay()
 		}
 	}
 
-	//set to turnip as default
+	//set to turnip as default and send a change in case it doesn't show in the UI
 	CurrentCropSprites = TurnipCropSprites;
 	CropValue = TurnipValue;
 	CurrentCropImage = TurnipCropImage;
 	CropCost = TurnipSeedCost;
+
+	OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
 }
 
 void AFarmerCharacter::NotifyControllerChanged()
@@ -227,7 +229,7 @@ void AFarmerCharacter::SwapToTurnipSeed()
 	CurrentCropImage = TurnipCropImage;
 	CropCost = TurnipSeedCost;
 
-	OnSpriteImageChanged.Broadcast(CurrentCropImage);
+	OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
 }
 
 void AFarmerCharacter::SwapToRoseSeed()
@@ -237,7 +239,7 @@ void AFarmerCharacter::SwapToRoseSeed()
 	CurrentCropImage = RoseCropImage;
 	CropCost = RoseSeedCost;
 	
-	OnSpriteImageChanged.Broadcast(CurrentCropImage);
+	OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
 }
 
 void AFarmerCharacter::SwapToStrawberrySeed()
@@ -247,7 +249,7 @@ void AFarmerCharacter::SwapToStrawberrySeed()
 	CurrentCropImage = StrawberryCropImage;
 	CropCost = StrawberrySeedCost;
 
-	OnSpriteImageChanged.Broadcast(CurrentCropImage);
+	OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
 }
 
 void AFarmerCharacter::SwapToGrapeSeed()
@@ -257,7 +259,7 @@ void AFarmerCharacter::SwapToGrapeSeed()
 	CurrentCropImage = GrapeCropImage;
 	CropCost = GrapeSeedCost;
 
-	OnSpriteImageChanged.Broadcast(CurrentCropImage);
+	OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
 }
 
 void AFarmerCharacter::SwapToPineappleSeed()
@@ -267,7 +269,7 @@ void AFarmerCharacter::SwapToPineappleSeed()
 	CurrentCropImage = PineappleCropImage;
 	CropCost = PineappleSeedCost;
 
-	OnSpriteImageChanged.Broadcast(CurrentCropImage);
+	OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
 }
 
 void AFarmerCharacter::Move(const FInputActionValue& Value)
