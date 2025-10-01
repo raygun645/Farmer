@@ -224,12 +224,26 @@ void AFarmerCharacter::Plant()
 //here seeds will be assigned to a button press as well as their values
 void AFarmerCharacter::SwapToTurnipSeed()
 {
-	CurrentCropSprites = TurnipCropSprites;
-	CropValue = TurnipValue;
-	CurrentCropImage = TurnipCropImage;
-	CropCost = TurnipSeedCost;
+	//If spliced use those values
+	if (IsTurnipSpliced == true)
+	{
+		CurrentCropSprites = SplicedTurnipCropSprites;
+		CropValue = SplicedTurnipValue;
+		CurrentCropImage = SplicedTurnipCropImage;
+		CropCost = SplicedTurnipSeedCost;
 
-	OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+		OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+	}
+	else
+	{
+		CurrentCropSprites = TurnipCropSprites;
+		CropValue = TurnipValue;
+		CurrentCropImage = TurnipCropImage;
+		CropCost = TurnipSeedCost;
+
+		OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+	}
+	
 }
 
 void AFarmerCharacter::SwapToRoseSeed()

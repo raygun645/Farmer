@@ -119,13 +119,14 @@ protected:
 	TSubclassOf<AGridSoil> SoilClassFilter;
 
 	//Money
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	int32 Money = 100;
 
 	UPROPERTY(BlueprintAssignable)
 	FOnMoneyChanged OnMoneyChanged;
 
 	//Shared seed settings
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = SharedSeedSettings)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SharedSeedSettings)
 	TArray<UPaperSprite*> CurrentCropSprites;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = SharedSeedSettings)
 	UPaperSprite* CurrentCropImage;
@@ -138,55 +139,94 @@ protected:
 	FOnCropChanged OnCropChanged;
 
 	//Specific seeds
-	//Turnip
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip")
+	//Base turnip
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip|Unspliced")
 	TArray<UPaperSprite*> TurnipCropSprites;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip|Unspliced")
 	UPaperSprite* TurnipCropImage;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip|Unspliced")
 	int32 TurnipValue;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip|Unspliced")
 	int32 TurnipSeedCost;
 
-	//Rose
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose")
+	//Turnip upgrade stats
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip|Upgrades")
+	bool IsTurnipSpliced;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip|Upgrades")
+	int32 TurnipSpliceCost; // = Base value * 10
+
+	//Spliced turnip. Spliced values = Base * 2
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip|Spliced")
+	TArray<UPaperSprite*> SplicedTurnipCropSprites;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip|Spliced")
+	UPaperSprite* SplicedTurnipCropImage;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip|Spliced")
+	int32 SplicedTurnipValue;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Turnip|Spliced")
+	int32 SplicedTurnipSeedCost;
+	
+	//Base rose
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose|Unspliced")
 	TArray<UPaperSprite*> RoseCropSprites;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose|Unspliced")
 	UPaperSprite* RoseCropImage;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose|Unspliced")
 	int32 RoseValue;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose|Unspliced")
 	int32 RoseSeedCost;
 
-	//Strawberry
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry")
+	//Rose upgrade stats
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose|Upgrades")
+	bool IsRoseSpliced;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose|Upgrades")
+	int32 RoseSpliceCost;
+	
+	//Base strawberry
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Unspliced")
 	TArray<UPaperSprite*> StrawberryCropSprites;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Unspliced")
 	UPaperSprite* StrawberryCropImage;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Unspliced")
 	int32 StrawberryValue;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Unspliced")
 	int32 StrawberrySeedCost;
 
-	//Grape
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape")
+	//Strawberry upgrade stats
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Upgrades")
+	bool IsStrawberrySpliced;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Upgrades")
+	int32 StrawberrySpliceCost;
+	
+	//Base grape
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Unspliced")
 	TArray<UPaperSprite*> GrapeCropSprites;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Unspliced")
 	UPaperSprite* GrapeCropImage;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Unspliced")
 	int32 GrapeValue;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Unspliced")
 	int32 GrapeSeedCost;
 
-	//Pineapple
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple")
-	TArray<UPaperSprite*> PineappleCropSprites;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple")
-	UPaperSprite* PineappleCropImage;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple")
-	int32 PineappleValue;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple")
-	int32 PineappleSeedCost;
+	//Grape upgrade stats
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Upgrades")
+	bool IsGrapeSpliced;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Upgrades")
+	int32 GrapeSpliceCost;
 	
+	//Base pineapple
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Unspliced")
+	TArray<UPaperSprite*> PineappleCropSprites;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Unspliced")
+	UPaperSprite* PineappleCropImage;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Unspliced")
+	int32 PineappleValue;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Unspliced")
+	int32 PineappleSeedCost;
+
+	//Pineapple upgrade stats
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Upgrades")
+	bool IsPineappleSpliced;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Upgrades")
+	int32 PineappleSpliceCost;
 	
 };
