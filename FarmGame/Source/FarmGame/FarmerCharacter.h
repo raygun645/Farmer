@@ -16,6 +16,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMoneyChanged, int32, UpdatedMoney
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnCropChanged, UPaperSprite*, UpdatedCropSprite, int32, CropCost, int32, CropValue);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnToolTipTextOpen, bool, IsVisible);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCropDrawerOpen, bool, IsOpen);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSpliceDrawerOpen, bool, IsOpen);
 
 UCLASS()
 class FARMGAME_API AFarmerCharacter : public APaperCharacter
@@ -52,19 +53,23 @@ protected:
 	UInputAction* ToolTipAction;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* CropDrawerAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* SpliceDrawerAction;
 
 	void ToolTip();
 	void CropDrawer();
+	void SpliceDrawer();
 
 	bool IsDrawerOpen = false;
 	bool IsTipTextVisible = false;
+	bool IsSpliceDrawerOpen = false;
 
 	UPROPERTY(BlueprintAssignable)
 	FOnToolTipTextOpen OnToolTipTextOpen;
 	UPROPERTY(BlueprintAssignable)
 	FOnCropDrawerOpen OnCropDrawerOpen;
-	
-	
+	UPROPERTY(BlueprintAssignable)
+	FOnSpliceDrawerOpen OnSpliceDrawerOpen;
 	
 	//pause menu and input
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
@@ -180,6 +185,16 @@ protected:
 	bool IsRoseSpliced;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose|Upgrades")
 	int32 RoseSpliceCost;
+
+	//Spliced rose
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose|Spliced")
+	TArray<UPaperSprite*> SplicedRoseCropSprites;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose|Spliced")
+	UPaperSprite* SplicedRoseCropImage;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose|Spliced")
+	int32 SplicedRoseValue;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Rose|Spliced")
+	int32 SplicedRoseSeedCost;
 	
 	//Base strawberry
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Unspliced")
@@ -196,6 +211,16 @@ protected:
 	bool IsStrawberrySpliced;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Upgrades")
 	int32 StrawberrySpliceCost;
+
+	//Spliced strawberry
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Spliced")
+	TArray<UPaperSprite*> SplicedStrawberryCropSprites;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Spliced")
+	UPaperSprite* SplicedStrawberryCropImage;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Spliced")
+	int32 SplicedStrawberryValue;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Strawberry|Spliced")
+	int32 SplicedStrawberrySeedCost;
 	
 	//Base grape
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Unspliced")
@@ -212,6 +237,16 @@ protected:
 	bool IsGrapeSpliced;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Upgrades")
 	int32 GrapeSpliceCost;
+
+	//Spliced grape
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Spliced")
+	TArray<UPaperSprite*> SplicedGrapeCropSprites;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Spliced")
+	UPaperSprite* SplicedGrapeCropImage;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Spliced")
+	int32 SplicedGrapeValue;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Grape|Spliced")
+	int32 SplicedGrapeSeedCost;
 	
 	//Base pineapple
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Unspliced")
@@ -228,5 +263,15 @@ protected:
 	bool IsPineappleSpliced;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Upgrades")
 	int32 PineappleSpliceCost;
+
+	//Spliced pineapple
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Spliced")
+	TArray<UPaperSprite*> SplicedPineappleCropSprites;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Spliced")
+	UPaperSprite* SplicedPineappleCropImage;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Spliced")
+	int32 SplicedPineappleValue;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Seeds|Pineapple|Spliced")
+	int32 SplicedPineappleSeedCost;
 	
 };

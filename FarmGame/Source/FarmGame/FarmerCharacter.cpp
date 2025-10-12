@@ -82,6 +82,7 @@ void AFarmerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 		//UI elements
 		EnhancedInputComponent->BindAction(ToolTipAction, ETriggerEvent::Triggered, this, &AFarmerCharacter::ToolTip);
 		EnhancedInputComponent->BindAction(CropDrawerAction, ETriggerEvent::Triggered, this, &AFarmerCharacter::CropDrawer);
+		EnhancedInputComponent->BindAction(SpliceDrawerAction, ETriggerEvent::Triggered, this, &AFarmerCharacter::SpliceDrawer);
 		//Swapping seeds
 		EnhancedInputComponent->BindAction(SeedSlot1Action, ETriggerEvent::Triggered, this, &AFarmerCharacter::SwapToTurnipSeed);
 		EnhancedInputComponent->BindAction(SeedSlot2Action, ETriggerEvent::Triggered, this, &AFarmerCharacter::SwapToRoseSeed);
@@ -123,6 +124,20 @@ void AFarmerCharacter::CropDrawer()
 	{
 		IsDrawerOpen = false;
 		OnCropDrawerOpen.Broadcast(false);
+	}
+}
+
+void AFarmerCharacter::SpliceDrawer()
+{
+	if (IsSpliceDrawerOpen == false)
+	{
+		IsSpliceDrawerOpen = true;
+		OnSpliceDrawerOpen.Broadcast(true);
+	}
+	else
+	{
+		IsSpliceDrawerOpen = false;
+		OnSpliceDrawerOpen.Broadcast(false);
 	}
 }
 
@@ -204,7 +219,7 @@ void AFarmerCharacter::Plant()
 		
 		if (OverlappingActor)
 		{
-			if (Money > 0)
+			if (Money > CropCost)
 			{
 				UE_LOG(LogTemp, Display, TEXT("PlantedSeed (Player Side)"));
 				bool PlantResult = InteractionInterface->Plant(CurrentCropSprites, CropValue);
@@ -248,42 +263,94 @@ void AFarmerCharacter::SwapToTurnipSeed()
 
 void AFarmerCharacter::SwapToRoseSeed()
 {
-	CurrentCropSprites = RoseCropSprites;
-	CropValue = RoseValue;
-	CurrentCropImage = RoseCropImage;
-	CropCost = RoseSeedCost;
+	if (IsRoseSpliced == true)
+	{
+		CurrentCropSprites = SplicedRoseCropSprites;
+		CropValue = SplicedRoseValue;
+		CurrentCropImage = SplicedRoseCropImage;
+		CropCost = SplicedRoseSeedCost;
 	
-	OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+		OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+	}
+	else
+	{
+		CurrentCropSprites = RoseCropSprites;
+		CropValue = RoseValue;
+		CurrentCropImage = RoseCropImage;
+		CropCost = RoseSeedCost;
+	
+		OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+	}
+	
 }
 
 void AFarmerCharacter::SwapToStrawberrySeed()
 {
-	CurrentCropSprites = StrawberryCropSprites;
-	CropValue = StrawberryValue;
-	CurrentCropImage = StrawberryCropImage;
-	CropCost = StrawberrySeedCost;
+	if (IsStrawberrySpliced == true)
+	{
+		CurrentCropSprites = SplicedStrawberryCropSprites;
+		CropValue = SplicedStrawberryValue;
+		CurrentCropImage = SplicedStrawberryCropImage;
+		CropCost = SplicedStrawberrySeedCost;
 
-	OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+		OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+	}
+	else
+	{
+		CurrentCropSprites = StrawberryCropSprites;
+		CropValue = StrawberryValue;
+		CurrentCropImage = StrawberryCropImage;
+		CropCost = StrawberrySeedCost;
+
+		OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+	}
+	
 }
 
 void AFarmerCharacter::SwapToGrapeSeed()
 {
-	CurrentCropSprites = GrapeCropSprites;
-	CropValue = GrapeValue;
-	CurrentCropImage = GrapeCropImage;
-	CropCost = GrapeSeedCost;
+	if (IsGrapeSpliced == true)
+	{
+		CurrentCropSprites = SplicedGrapeCropSprites;
+		CropValue = SplicedGrapeValue;
+		CurrentCropImage = SplicedGrapeCropImage;
+		CropCost = SplicedGrapeSeedCost;
 
-	OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+		OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+	}
+	else
+	{
+		CurrentCropSprites = GrapeCropSprites;
+		CropValue = GrapeValue;
+		CurrentCropImage = GrapeCropImage;
+		CropCost = GrapeSeedCost;
+
+		OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+	}
+	
 }
 
 void AFarmerCharacter::SwapToPineappleSeed()
 {
-	CurrentCropSprites = PineappleCropSprites;
-	CropValue = PineappleValue;
-	CurrentCropImage = PineappleCropImage;
-	CropCost = PineappleSeedCost;
+	if (IsPineappleSpliced == true)
+	{
+		CurrentCropSprites = SplicedPineappleCropSprites;
+		CropValue = SplicedPineappleValue;
+		CurrentCropImage = SplicedPineappleCropImage;
+		CropCost = SplicedPineappleSeedCost;
 
-	OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+		OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+	}
+	else
+	{
+		CurrentCropSprites = PineappleCropSprites;
+		CropValue = PineappleValue;
+		CurrentCropImage = PineappleCropImage;
+		CropCost = PineappleSeedCost;
+
+		OnCropChanged.Broadcast(CurrentCropImage, CropCost, CropValue);
+	}
+	
 }
 
 void AFarmerCharacter::Move(const FInputActionValue& Value)
