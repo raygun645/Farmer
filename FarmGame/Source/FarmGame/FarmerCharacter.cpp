@@ -11,9 +11,9 @@
 
 /* TODO: (In any order)
  * Crop cost and balanced values (DONE)
+ * Upgrades to crops/Progression for unlocking new crops (DONE)
  * Possibly other ways of farming? different tools?
  * Different way to timeskip outside of a button in the UI
- * Upgrades to crops/Progression for unlocking new crops
  * Autonomous Farming?
  * Save functions for saving unlocks and progress
  * New sound effects and UI tweaks
