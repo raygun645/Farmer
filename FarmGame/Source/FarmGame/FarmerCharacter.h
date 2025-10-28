@@ -94,12 +94,20 @@ protected:
 	void Water();
 	void Plant();
 
+    //SFX for actions
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Sounds")
 	USoundBase* HoeSound;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Sounds")
 	USoundBase* WaterSound;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Sounds")
 	USoundBase* PlantSound;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Sounds")
+	USoundBase* CoinsSound;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Sounds")
+	USoundBase* ErrorSound;
+
+	//UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Sounds")
+	//TArray<USoundBase*> WaterSounds;
 
 	//seed swapping
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))

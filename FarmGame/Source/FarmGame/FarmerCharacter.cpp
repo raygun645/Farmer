@@ -181,6 +181,7 @@ void AFarmerCharacter::Hoe()
 			if (GridSoil->IsPlantReady == true)
 			{
 				UE_LOG(LogTemp, Display, TEXT("Money for plant"));
+				UGameplayStatics::PlaySound2D(GetWorld(),CoinsSound);
 				int32 Profit = Money += GridSoil->PlantedCropValue;
 				OnMoneyChanged.Broadcast(Profit);
 			}
@@ -191,6 +192,9 @@ void AFarmerCharacter::Hoe()
 
 void AFarmerCharacter::Water()
 {
+	//const int32 RandomIndex = FMath::RandRange(0, WaterSounds.Num() - 1);
+	//UGameplayStatics::PlaySound2D(GetWorld(),WaterSounds[RandomIndex]);
+	
 	UGameplayStatics::PlaySound2D(GetWorld(),WaterSound);
 	
 	TArray<AActor*> OverlappingActors;
@@ -230,6 +234,10 @@ void AFarmerCharacter::Plant()
 					
 					Money -= CropCost;
 					OnMoneyChanged.Broadcast(Money);
+				}
+				else
+				{
+					UGameplayStatics::PlaySound2D(GetWorld(),ErrorSound);
 				}
 			}
 		}
