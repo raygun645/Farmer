@@ -12,11 +12,11 @@
 /* TODO: (In any order)
  * Crop cost and balanced values (DONE)
  * Upgrades to crops/Progression for unlocking new crops (DONE)
+ * New sound effects and UI tweaks (In-Progress)
  * Possibly other ways of farming? different tools?
  * Different way to timeskip outside of a button in the UI
  * Autonomous Farming?
  * Save functions for saving unlocks and progress
- * New sound effects and UI tweaks
  * Find a way to have more seeds? maybe a catalogue you can select seeds to have in your toolbar.
  * Maybe a way to buy more space?
  * A Town transition rather than doing everything on the farm.
