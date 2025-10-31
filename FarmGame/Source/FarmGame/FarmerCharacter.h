@@ -104,6 +104,8 @@ protected:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Sounds")
 	USoundBase* CoinsSound;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Sounds")
+	USoundBase* SwitchSound;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Sounds")
 	USoundBase* ErrorSound;
 
 	//UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Sounds")

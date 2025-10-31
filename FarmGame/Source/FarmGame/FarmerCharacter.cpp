@@ -247,6 +247,8 @@ void AFarmerCharacter::Plant()
 //here seeds will be assigned to a button press as well as their values
 void AFarmerCharacter::SwapToTurnipSeed()
 {
+	UGameplayStatics::PlaySound2D(GetWorld(),SwitchSound);
+	
 	//If spliced use those values
 	if (IsTurnipSpliced == true)
 	{
@@ -271,6 +273,8 @@ void AFarmerCharacter::SwapToTurnipSeed()
 
 void AFarmerCharacter::SwapToRoseSeed()
 {
+	UGameplayStatics::PlaySound2D(GetWorld(),SwitchSound);
+	
 	if (IsRoseSpliced == true)
 	{
 		CurrentCropSprites = SplicedRoseCropSprites;
@@ -294,6 +298,8 @@ void AFarmerCharacter::SwapToRoseSeed()
 
 void AFarmerCharacter::SwapToStrawberrySeed()
 {
+	UGameplayStatics::PlaySound2D(GetWorld(),SwitchSound);
+	
 	if (IsStrawberrySpliced == true)
 	{
 		CurrentCropSprites = SplicedStrawberryCropSprites;
@@ -317,6 +323,8 @@ void AFarmerCharacter::SwapToStrawberrySeed()
 
 void AFarmerCharacter::SwapToGrapeSeed()
 {
+	UGameplayStatics::PlaySound2D(GetWorld(),SwitchSound);
+	
 	if (IsGrapeSpliced == true)
 	{
 		CurrentCropSprites = SplicedGrapeCropSprites;
@@ -340,6 +348,8 @@ void AFarmerCharacter::SwapToGrapeSeed()
 
 void AFarmerCharacter::SwapToPineappleSeed()
 {
+	UGameplayStatics::PlaySound2D(GetWorld(),SwitchSound);
+	
 	if (IsPineappleSpliced == true)
 	{
 		CurrentCropSprites = SplicedPineappleCropSprites;
